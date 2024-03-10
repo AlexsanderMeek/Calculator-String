@@ -9,7 +9,7 @@ public class Main {
         // Получаем выражение от пользователя и передаём в переменную "num"
         String word = scan.nextLine();
         String x = word.replaceAll(" ", "");
-        String[] oper = x.split("[+\\-*/]");
+        String[] oper = x.split("[+\\-*/-]");
         String oper2 = x.replaceAll("\\w+", "");
         String edoper2 = oper2.replace("\"","");
 
@@ -80,20 +80,21 @@ class CalcString{
     void operation1(String[] oper, String edoper2 ){
         String s = oper[0].replace("\"","");
         String s2 = oper[1].replace("\"","");
+        String edopered = edoper2.replace("!","");
 
-        if (edoper2.equals("+")){
+        if (edopered.equals("+")){
             System.out.println("\"" + s+s2 + "\"");
         }
-        else if (edoper2.equals("-")) {
+        else if (edopered.equals("-")) {
             String result = s.replace(s2,"");
-            System.out.println(result);
+            System.out.println("\"" + result + "\"");
 
         }
-        else if (edoper2.equals("*")) {
+        else if (edopered.equals("*")) {
             throw new IllegalStateException("Это невозможно выполнить;");
 
         }
-        else if (edoper2.equals("/")) {
+        else if (edopered.equals("/")) {
             throw new IllegalStateException("Это невозможно выполнить;");
         }
 
@@ -107,28 +108,30 @@ class CalcSN{
     void operation2(String[] oper, String edoper2 ){
         String s = oper[0].replace("\"","");
         String s2 = oper[1].replace("\"","");
+        String edopered = edoper2.replace("!","");
         int num = Integer.parseInt(s2);
 
-        if (edoper2.equals("+")){
+        if (edopered.equals("+")){
             throw new IllegalStateException("Это невозможно выполнить;");
         }
-        else if (edoper2.equals("-")) {
+        else if (edopered.equals("-")) {
             throw new IllegalStateException("Это невозможно выполнить;");
 
         }
-        else if (edoper2.equals("*")) {
+        else if (edopered.equals("*")) {
             StringBuilder sb = new StringBuilder();
             for(int i = 0; i < num; i++){
                 sb.append(s);
             }
             String result = sb.toString();
-            System.out.println(result);
+            System.out.println("\"" + result + "\"");
 
 
         }
-        else if (edoper2.equals("/")) {
-            String result = s.substring(0, s.length() - num);
-            System.out.println(result);
+        else if (edopered.equals("/")) {
+            String xsplit = s.replace("!","");
+            String result = xsplit.substring(0, xsplit.length() - num);
+            System.out.println("\"" + result + "\"");
 
 
         }
